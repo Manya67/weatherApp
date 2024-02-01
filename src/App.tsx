@@ -111,37 +111,56 @@ const App = () => {
           )}
         </div>
       ) : weatherData && weatherData?.message ? (
-        <div className="h-[80%] w-[1100px] bg-white shadow-2xl shadow-[#e3a1e1] rounded-3xl flex items-center justify-center overflow-hidden">
-          <div className="h-full w-2/3 py-4 px-2 bg-[#EAEAEB] flex flex-col justify-between items-center">
-            <div className="h-[10%] w-full flex justify-between items-center px-2">
-              <input
-                type="search"
-                className="py-2 px-2 rounded-3xl outline-none"
-                placeholder="Search city.."
-                value={cityName}
-                onChange={(e) => setCityName(e.target.value)}
-                onKeyDown={(e) => {
-                  e.keyCode === 13 && setApiFetch(!apiFetch);
-                  // e.target.placeholder = ""
-                }}
-              />
-              <div className="w-[25%] flex h-full justify-end items-center px-2">
-                <label className="flex cursor-pointer select-none w-16 h-full items-center">
-                  <div className="relative">
-                    <input
-                      type="checkbox"
-                      className="peer absolute left-1/2 -translate-x-1/2 w-full h-full appearance-none rounded-md "
-                      disabled
-                    />
-                    <span className="w-16 h-10 flex items-center flex-shrink-0 ml-4 p-1 bg-red-300 rounded-full duration-300 ease-in-out peer-checked:bg-green-400 after:w-8 after:h-8 after:bg-blue-900 after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-6 after:content-center"></span>
-                  </div>
-                </label>
+        <div className="bg-[#F8D8F7] h-screen flex flex-col justify-evenly items-center gap-2 py-6">
+          <div className="h-[460px] min-w-[1100px] max-w-[1100px] bg-white shadow-2xl shadow-[#e3a1e1] rounded-3xl flex items-center justify-center overflow-hidden">
+            <div className="h-full min-w-[300px]" />
+            <div className="h-full w-full py-4 px-2 bg-[#EAEAEB] flex flex-col justify-start items-center">
+              <div className="h-[10%] w-[95%] flex justify-between items-center ">
+                <input
+                  type="search"
+                  className="py-2 px-2 rounded-3xl outline-none"
+                  placeholder="Search city.."
+                  value={cityName}
+                  onChange={(e) => setCityName(e.target.value)}
+                  onKeyDown={(e) => {
+                    e.keyCode === 13 && setApiFetch(!apiFetch);
+                  }}
+                />
+                <div className="w-[25%] flex h-full justify-end items-center px-2">
+                  <label className="flex cursor-pointer select-none w-16 h-full items-center">
+                    <div className="relative">
+                      <input
+                        type="checkbox"
+                        className="peer absolute left-1/2 -translate-x-1/2 w-full h-full appearance-none rounded-md cursor-not-allowed"
+                        disabled
+                      />
+                      <span className="w-16 h-10 flex items-center flex-shrink-0 ml-4 p-1 bg-[#F8D8F7] rounded-full duration-300 ease-in-out peer-checked:bg-green-400 after:w-8 after:h-8 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-6 after:content-center"></span>
+                    </div>
+                  </label>
+                </div>
               </div>
+              <div className="max-w-full flex flex-wrap justify-start items-start py-2 pl-4 gap-2">
+                <div className="h-48 w-56 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
+                <div className="h-48 w-56 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
+                <div className="h-48 w-56 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
+                <div className="h-48 w-56 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
+                <div className="h-48 w-56 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
+                <div className="h-48 w-56 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
+              </div>
+            </div>
+          </div>
+          <div className="min-h-[20%] min-w-[1100px] rounded-3xl flex items-center justify-center overflow-hidden">
+            <div className="w-full h-full flex flex-wrap justify-evenly items-start gap-3">
+              <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
+              <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
+              <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
+              <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
+              <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
             </div>
           </div>
         </div>
       ) : (
-        <div>errrororro</div>
+        <div className="h-screen w-full text-center"> ERRROORRR!</div>
       )}
     </>
   );
