@@ -30,7 +30,7 @@ const CurrDetails = ({ weather }: any) => {
       />
       <Card
         mainHeading="Wind direction"
-        number={weather?.wind?.direction}
+        number={weather?.wind?.deg}
         icon="compass"
       />
     </div>

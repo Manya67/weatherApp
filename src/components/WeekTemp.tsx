@@ -1,4 +1,5 @@
-import WeekCard, { weekCardDetails } from "./WeekCard";
+import { weekCardDetails } from "../interface";
+import WeekCard from "./WeekCard";
 
 const WeekTemp = ({ futureWeather }: any) => {
   return (
@@ -6,9 +7,9 @@ const WeekTemp = ({ futureWeather }: any) => {
       {futureWeather.map((day: weekCardDetails, index: string) => {
         return (
           <WeekCard
-            date={day.date}
-            icon={day.icon}
-            temp={day.temp}
+            date={day?.date}
+            icon={day?.icon}
+            temp={day?.temp}
             key={index}
           />
         );

@@ -1,11 +1,5 @@
-interface currTempDeatils {
-  city: string;
-  country: string;
-  temperature: string;
-  feels: string;
-  desc: string;
-  icon: string;
-}
+import { currTempDeatils } from "../interface";
+
 const CurrTemp = ({
   city,
   country,

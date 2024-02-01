@@ -9,4 +9,9 @@
   margin: 0;
   box-sizing: border-box;
   font-family: "Varela Round", sans-serif;
+  scroll-behavior: smooth;
+  scroll-snap-type: mandatory;
+}
+::selection {
+  color: #ff64fa;
 }

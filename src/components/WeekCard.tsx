@@ -1,44 +1,12 @@
-export interface weekCardDetails {
-  temp: string;
-  date: string;
-  icon: string;
-}
+import { getMonth } from "../Constant";
+import { weekCardDetails } from "../interface";
+
 const WeekCard = ({ temp, date, icon }: weekCardDetails) => {
-  const getMonth = (ind: string) => {
-    switch (ind) {
-      case "01":
-        return "Jan";
-      case "02":
-        return "Feb";
-      case "03":
-        return "Mar";
-      case "04":
-        return "Apr";
-      case "05":
-        return "May";
-      case "06":
-        return "Jun";
-      case "07":
-        return "Jul";
-      case "08":
-        return "Aug";
-      case "09":
-        return "Sept";
-      case "10":
-        return "Oct";
-      case "11":
-        return "Nov";
-      case "12":
-        return "Dec";
-      case "12":
-        return "Jan";
-    }
-  };
-  const month = getMonth(date.substr(5, 2));
-  const day = date.substr(8, 2);
+  const month = getMonth(date?.substr(5, 2));
+  const day = date?.substr(8, 2);
 
   return (
-    <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2">
+    <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a] flex justify-center items-center gap-2">
       <div className="flex justify-end items-end h-full">
         <img
           width="100px"
