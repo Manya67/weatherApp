@@ -1,4 +1,5 @@
-import { currTempDeatils } from "../interface";
+import { ctoF } from "../assets/converts";
+import { currTempDeatils } from "../assets/interface";
 
 const CurrTemp = ({
   city,
@@ -7,6 +8,7 @@ const CurrTemp = ({
   feels,
   desc,
   icon,
+  unitSystem,
 }: currTempDeatils) => {
   return (
     <div className="h-[100%] w-1/3 py-4 px-2 flex flex-col overflow-x-hidden justify-center items-center">
@@ -20,8 +22,17 @@ const CurrTemp = ({
         src={`/icons/${icon}.svg`}
         alt="weatherIcon"
       />
-      <h1 className="text-5xl font-semibold">{temperature}</h1>
-      <p className="text-lg leading-none tracking-wide">feels like {feels}</p>
+      <h1 className="text-5xl font-semibold">
+        {unitSystem === "metric"
+          ? Math.round(temperature)
+          : Math.round(ctoF(temperature))}
+        °{unitSystem === "metric" ? "C" : "F"}
+      </h1>
+      <p className="text-lg leading-none tracking-wide">
+        feels like{" "}
+        {unitSystem === "metric" ? Math.round(feels) : Math.round(ctoF(feels))}°
+        {unitSystem === "metric" ? "C" : "F"}
+      </p>
     </div>
   );
 };

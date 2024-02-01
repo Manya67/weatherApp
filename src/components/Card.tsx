@@ -1,4 +1,4 @@
-import { cardDtails } from "../interface";
+import { cardDtails } from "../assets/interface";
 
 const Card = ({ mainHeading, number, unit, icon }: cardDtails) => {
   return (

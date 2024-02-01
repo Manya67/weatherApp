@@ -1,4 +1,12 @@
-export const OPENWEATHER_API_KEY = "ffbd3a7e32649e0277380722f186d76e";
+import { kmToMiles, mpsToMph } from "./converts";
+
+export const getWindSpeed = (unitSystem, windInMps) =>
+  unitSystem == "metric" ? windInMps : mpsToMph(windInMps);
+
+export const getVisibility = (unitSystem, visibilityInMeters) =>
+  unitSystem == "metric"
+    ? (visibilityInMeters / 1000).toFixed(1)
+    : kmToMiles(visibilityInMeters / 1000);
 
 export const getMonth = (ind: string) => {
   switch (ind) {

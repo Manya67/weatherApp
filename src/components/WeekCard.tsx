@@ -1,7 +1,7 @@
-import { getMonth } from "../Constant";
-import { weekCardDetails } from "../interface";
+import { getMonth } from "../assets/functions";
+import { weekCardDetails } from "../assets/interface";
 
-const WeekCard = ({ temp, date, icon }: weekCardDetails) => {
+const WeekCard = ({ temp, date, icon, unit }: weekCardDetails) => {
   const month = getMonth(date?.substr(5, 2));
   const day = date?.substr(8, 2);
 
@@ -21,7 +21,7 @@ const WeekCard = ({ temp, date, icon }: weekCardDetails) => {
           {day} {month}
         </h3>
         <h4 className="text-2xl font-semibold">{temp}</h4>
-        <p className="text-base font-normal">C</p>
+        <p className="text-base font-normal">{unit}</p>
       </div>
     </div>
   );

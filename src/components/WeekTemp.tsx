@@ -1,4 +1,4 @@
-import { weekCardDetails } from "../interface";
+import { weekCardDetails } from "../assets/interface";
 import WeekCard from "./WeekCard";
 
 const WeekTemp = ({ futureWeather }: any) => {

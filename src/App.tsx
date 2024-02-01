@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import CurrDetails from "./components/CurrDetails";
 import CurrTemp from "./components/CurrTemp";
-import { OPENWEATHER_API_KEY } from "./Constant";
 import WeekTemp from "./components/WeekTemp";
+import { OPENWEATHER_API_KEY } from "./assets/constants";
 
 const App = () => {
   const [cityName, setCityName] = useState("Pune");
   const [weatherData, setWeatherData]: any = useState();
   const [futureDetail, setFutureDetail]: any = useState();
   const [apiFetch, setApiFetch] = useState(true);
+  const [unitSystem, setUnitSystem] = useState("metric");
 
   const [themeMode, setThemeMode] = useState("light");
   useEffect(() => {
@@ -69,6 +70,11 @@ const App = () => {
     }
   }, [apiFetch]);
 
+  const changeSystem = () =>
+    unitSystem == "metric"
+      ? setUnitSystem("imperial")
+      : setUnitSystem("metric");
+
   return (
     <>
       {weatherData && !weatherData?.message ? (
@@ -81,6 +87,7 @@ const App = () => {
               feels={weatherData?.main?.feels_like}
               desc={weatherData?.weather[0]?.main}
               icon={weatherData?.weather[0]?.icon}
+              unitSystem={unitSystem}
             />
             <div className="h-full w-2/3 py-4 px-2 bg-[#bcbcbc] dark:bg-[#232121] flex flex-col justify-between items-center">
               <div className="h-[10%] w-[95%] flex justify-between items-center ">
@@ -111,6 +118,9 @@ const App = () => {
                       <input
                         type="checkbox"
                         className="peer absolute left-1/2 -translate-x-1/2 w-full h-full appearance-none rounded-md"
+                        onClick={() => {
+                          changeSystem();
+                        }}
                       />
                       <span className="w-16 h-10 flex items-center flex-shrink-0 ml-4 p-1 bg-[#F8D8F7] dark:bg-[#0a0a0a] rounded-full duration-300 ease-in-out peer-checked:bg-green-400 after:w-8 after:h-8 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-6 after:content-center"></span>
                     </div>
@@ -118,12 +128,12 @@ const App = () => {
                 </div>
               </div>
 
-              <CurrDetails weather={weatherData} />
+              <CurrDetails weather={weatherData} unitSystem={unitSystem} />
             </div>
           </div>
           {futureDetail && (
             <div className="h-[20%] max-w-[1100px] rounded-3xl flex items-center justify-center overflow-hidden">
-              <WeekTemp futureWeather={futureDetail} />
+              <WeekTemp futureWeather={futureDetail} unitSystem={unitSystem} />
             </div>
           )}
         </div>
