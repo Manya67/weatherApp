@@ -1,10 +1,9 @@
-import { weekCardDetails } from "../assets/interface";
 import WeekCard from "./WeekCard";
 
-const WeekTemp = ({ futureWeather }: any) => {
+const WeekTemp = ({ futureWeather }) => {
   return (
     <div className="w-full h-full flex flex-wrap justify-evenly items-start gap-3">
-      {futureWeather.map((day: weekCardDetails, index: string) => {
+      {futureWeather.map((day, index) => {
         return (
           <WeekCard
             date={day?.date}

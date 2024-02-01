@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import CurrDetails from "./components/CurrDetails";
 import CurrTemp from "./components/CurrTemp";
 import WeekTemp from "./components/WeekTemp";
-import { OPENWEATHER_API_KEY } from "./assets/constants";
+import { OPENWEATHER_API_KEY } from "./assets/constants.jsx";
 
 const App = () => {
   const [cityName, setCityName] = useState("Pune");
-  const [weatherData, setWeatherData]: any = useState();
-  const [futureDetail, setFutureDetail]: any = useState();
+  const [weatherData, setWeatherData] = useState();
+  const [futureDetail, setFutureDetail] = useState();
   const [apiFetch, setApiFetch] = useState(true);
   const [unitSystem, setUnitSystem] = useState("metric");
 
@@ -18,7 +18,7 @@ const App = () => {
   }, [themeMode]);
 
   useEffect(() => {
-    const updateIndices = async (data: any) => {
+    const updateIndices = async (data) => {
       let indices = new Array(5);
       const currdate =
         data?.list[0]?.dt_txt.substr(5, 2) + data?.list[0]?.dt_txt.substr(8, 2);
@@ -35,7 +35,7 @@ const App = () => {
       }
       return indices;
     };
-    const updateState = async (data: any) => {
+    const updateState = async (data) => {
       const days = [];
       const indices = await updateIndices(data);
 

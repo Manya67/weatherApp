@@ -2,7 +2,7 @@ import { ctoF, degToCompass } from "../assets/converts";
 import { getVisibility, getWindSpeed } from "../assets/functions";
 import Card from "./Card";
 
-const CurrDetails = ({ weather, unitSystem }: any) => {
+const CurrDetails = ({ weather, unitSystem }) => {
   return (
     <div className="w-full flex flex-wrap justify-start items-start py-2 pl-4 gap-2">
       <Card

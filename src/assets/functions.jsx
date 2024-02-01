@@ -8,7 +8,7 @@ export const getVisibility = (unitSystem, visibilityInMeters) =>
     ? (visibilityInMeters / 1000).toFixed(1)
     : kmToMiles(visibilityInMeters / 1000);
 
-export const getMonth = (ind: string) => {
+export const getMonth = (ind) => {
   switch (ind) {
     case "01":
       return "Jan";

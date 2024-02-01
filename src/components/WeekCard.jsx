@@ -1,7 +1,6 @@
 import { getMonth } from "../assets/functions";
-import { weekCardDetails } from "../assets/interface";
 
-const WeekCard = ({ temp, date, icon, unit }: weekCardDetails) => {
+const WeekCard = ({ temp, date, icon, unit }) => {
   const month = getMonth(date?.substr(5, 2));
   const day = date?.substr(8, 2);
 

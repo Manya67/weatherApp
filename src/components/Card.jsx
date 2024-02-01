@@ -1,6 +1,4 @@
-import { cardDtails } from "../assets/interface";
-
-const Card = ({ mainHeading, number, unit, icon }: cardDtails) => {
+const Card = ({ mainHeading, number, unit, icon }) => {
   return (
     <div className="h-48 w-56 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a] flex justify-center items-center gap-2">
       <div className="flex justify-end items-end h-full pl-2">

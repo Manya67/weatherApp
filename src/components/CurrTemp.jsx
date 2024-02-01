@@ -1,6 +1,4 @@
 import { ctoF } from "../assets/converts";
-import { currTempDeatils } from "../assets/interface";
-
 const CurrTemp = ({
   city,
   country,
@@ -9,7 +7,7 @@ const CurrTemp = ({
   desc,
   icon,
   unitSystem,
-}: currTempDeatils) => {
+}) => {
   return (
     <div className="h-[100%] w-1/3 py-4 px-2 flex flex-col overflow-x-hidden justify-center items-center">
       <h1 className="text-4xl font-semibold">
