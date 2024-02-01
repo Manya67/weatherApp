@@ -6,13 +6,15 @@ interface cardDtails {
 }
 const Card = ({ mainHeading, number, unit, icon }: cardDtails) => {
   return (
-    <div className="h-44 w-52 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2">
-      <img
-        width="100px"
-        height="100px"
-        src={`/icons/${icon}.png`}
-        alt="weatherIcon"
-      />
+    <div className="h-48 w-56 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2">
+      <div className="flex justify-end items-end h-full pl-2">
+        <img
+          width="124px"
+          height="124px"
+          src={`/icons/${icon}.png`}
+          alt="weatherIcon"
+        />
+      </div>
       <div className="h-full flex flex-col items-end justify-start pr-1">
         <h3 className="text-xl font-medium text-right ">{mainHeading}</h3>
         <h4 className="text-3xl font-semibold">{number}</h4>

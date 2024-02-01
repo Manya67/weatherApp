@@ -15,7 +15,7 @@ const CurrTemp = ({
   icon,
 }: currTempDeatils) => {
   return (
-    <div className="h-[90%] w-1/3 py-4 px-2 flex flex-col overflow-x-hidden justify-between items-center">
+    <div className="h-[100%] w-1/3 py-4 px-2 flex flex-col overflow-x-hidden justify-center items-center">
       <h1 className="text-4xl font-semibold">
         {city},{country}
       </h1>
