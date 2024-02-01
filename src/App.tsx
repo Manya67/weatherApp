@@ -1,35 +1,24 @@
+import CurrDetails from "./components/CurrDetails";
+import CurrTemp from "./components/CurrTemp";
+import Search from "./components/Search";
+
 function App() {
   return (
-    <div className="bg-[#F8D8F7] h-screen flex justify-center items-center">
-      <div className="h-[90%] w-[80%] bg-white shadow-2xl shadow-[#e3a1e1] rounded-3xl flex items-center justify-center overflow-hidden">
-        <div className="h-[90%] w-1/3 py-4 px-2 flex flex-col overflow-x-hidden justify-between items-center">
-          <h1 className="text-4xl font-semibold">London,US</h1>
-          <p className="text-lg leading-none tracking-wide">fog</p>
-          <img
-            width="300px"
-            height="300px"
-            src={`/01d.svg`}
-            alt="weatherIcon"
-          />
-          <h1 className="text-5xl font-semibold">17 ^C</h1>
-          <p className="text-lg leading-none tracking-wide">feels like 17C</p>
-        </div>
-        <div className="h-full w-2/3 py-4 px-2 bg-[#EAEAEB] flex flex-col justify-start items-center">
-          <div className="h-[10%] w-full">Search</div>
-          <div className="h-[90%] w-full flex justify-start items-start flex-wrap py-2 px-2 gap-x-3">
-            <div className="h-44 w-52 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2">
-              <img
-                width="100px"
-                height="100px"
-                src={`/01d.svg`}
-                alt="weatherIcon"
-              />
-              <div className="h-full flex flex-col items-end justify-start">
-                <h3 className="text-xl font-medium">Visibility</h3>
-                <h4 className="text-3xl font-semibold">18</h4>
-                <p className="text-lg font-normal">km</p>
-              </div>
-            </div>
+    <div className="bg-[#F8D8F7] h-screen flex justify-center items-center gap-4">
+      <div className="h-[80%] w-[80%] bg-white shadow-2xl shadow-[#e3a1e1] rounded-3xl flex items-center justify-center overflow-hidden">
+        <CurrTemp />
+        <div className="h-full w-2/3 py-4 px-2 bg-[#EAEAEB] flex flex-col justify-between items-center">
+          <Search />
+          <CurrDetails />
+          <div className="flex justify-end items-end w-full">
+            <button>
+              {/* <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                <path d="M7.293 4.707 14.586 12l-7.293 7.293 1.414 1.414L17.414 12 8.707 3.293 7.293 4.707z" />
+              </svg> */}
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+                <path d="M15.293 3.293 6.586 12l8.707 8.707 1.414-1.414L9.414 12l7.293-7.293-1.414-1.414z" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
