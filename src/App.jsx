@@ -3,6 +3,8 @@ import CurrDetails from "./components/CurrDetails";
 import CurrTemp from "./components/CurrTemp";
 import WeekTemp from "./components/WeekTemp";
 import { OPENWEATHER_API_KEY } from "./assets/constants.jsx";
+const emptyboxStyles =
+  "h-40 w-52 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a] flex justify-center items-center gap-2";
 
 const App = () => {
   const [cityName, setCityName] = useState("Pune");
@@ -150,50 +152,24 @@ const App = () => {
                 e.keyCode === 13 && setApiFetch(!apiFetch);
               }}
             />
-            <div className="w-full md:w-[25%] flex h-full justify-center sm:justify-end items-center px-2">
-              <button
-                onClick={() => {
-                  setThemeMode(themeMode === "light" ? "dark" : "light");
-                }}
-              >
-                {themeMode === "light" ? (
-                  <img height="32px" width="32px" src="/icons/01n.svg" />
-                ) : (
-                  <img height="32px" width="32px" src="/icons/01d.svg" />
-                )}
-              </button>
-              <label className="flex cursor-pointer select-none w-16 h-full items-center">
-                <div className="relative">
-                  <input
-                    type="checkbox"
-                    className="peer absolute left-1/2 -translate-x-1/2 w-full h-full appearance-none rounded-md cursor-not-allowed"
-                    disabled
-                    onClick={() => {
-                      changeSystem();
-                    }}
-                  />
-                  <span className="w-16 h-10 flex items-center flex-shrink-0 ml-4 p-1 bg-[#F8D8F7] dark:bg-[#0a0a0a] rounded-full duration-300 ease-in-out peer-checked:bg-green-400 after:w-8 after:h-8 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-6 after:content-center"></span>
-                </div>
-              </label>
-            </div>
           </div>
-          <div className="max-w-full flex flex-wrap justify-start items-start py-2 pl-4 gap-2">
-            <div className="h-40 w-52 lg:h-48 lg:w-56  rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a]  flex justify-center items-center gap-2" />
-            <div className="h-40 w-52 lg:h-48 lg:w-56 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a]  flex justify-center items-center gap-2" />
-            <div className="h-40 w-52 lg:h-48 lg:w-56 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a]  flex justify-center items-center gap-2" />
-            <div className="h-40 w-52 lg:h-48 lg:w-56 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a]  flex justify-center items-center gap-2" />
-            <div className="h-40 w-52 lg:h-48 lg:w-56 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a]  flex justify-center items-center gap-2" />
-            <div className="h-40 w-52 lg:h-48 lg:w-56 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a]  flex justify-center items-center gap-2" />
+          <p>City not found!</p>
+          <div className="max-w-full flex flex-wrap justify-center items-start py-2 pl-4 gap-2">
+            {Array(6)
+              .fill(1)
+              .map((index) => {
+                return <div className={emptyboxStyles} key={index} />;
+              })}
           </div>
         </div>
       </div>
       <div className=" sm:w-full lg:min-w-[1000px] lg:max-w-[1000px] xl:min-w-[1100px] xl:max-w-[1100px] rounded-3xl hidden lg:flex items-center justify-center overflow-x-hidden">
         <div className="w-full h-full flex flex-wrap justify-evenly items-start gap-3">
-          <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a] flex justify-center items-center gap-2" />
-          <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a] flex justify-center items-center gap-2" />
-          <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a] flex justify-center items-center gap-2" />
-          <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a] flex justify-center items-center gap-2" />
-          <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a] flex justify-center items-center gap-2" />
+          {Array(5)
+            .fill(1)
+            .map((index) => {
+              return <div className={emptyboxStyles} key={index} />;
+            })}
         </div>
       </div>
     </div>
