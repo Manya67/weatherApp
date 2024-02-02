@@ -5,7 +5,7 @@ const WeekCard = ({ temp, date, icon, unit }) => {
   const day = date?.substr(8, 2);
 
   return (
-    <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a] flex justify-center items-center gap-2">
+    <div className="h-36 w-48 xl:h-40 xl:w-52 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a] flex justify-center items-center gap-2">
       <div className="flex justify-end items-end h-full">
         <img
           width="100px"

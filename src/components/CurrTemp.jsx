@@ -9,7 +9,7 @@ const CurrTemp = ({
   unitSystem,
 }) => {
   return (
-    <div className="h-[100%] w-1/3 py-4 px-2 flex flex-col overflow-x-hidden justify-center items-center">
+    <div className="lg:h-[100%] lg:w-1/3 py-4 px-2 flex flex-col overflow-x-hidden justify-center items-center">
       <h1 className="text-4xl font-semibold">
         {city},{country}
       </h1>

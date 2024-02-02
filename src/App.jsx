@@ -75,121 +75,132 @@ const App = () => {
       ? setUnitSystem("imperial")
       : setUnitSystem("metric");
 
-  return (
-    <>
-      {weatherData && !weatherData?.message ? (
-        <div className="bg-[#F8D8F7] dark:bg-[#573656] dark:text-white h-100vh flex flex-col justify-evenly items-center gap-2 py-6">
-          <div className="h-[70%] max-w-[1100px] bg-white dark:bg-[#0a0a0a] shadow-2xl shadow-[#e3a1e1] dark:shadow-[#f767f4] rounded-3xl flex items-center justify-center overflow-hidden">
-            <CurrTemp
-              city={weatherData?.name}
-              country={weatherData?.sys?.country}
-              temperature={weatherData?.main?.temp}
-              feels={weatherData?.main?.feels_like}
-              desc={weatherData?.weather[0]?.main}
-              icon={weatherData?.weather[0]?.icon}
-              unitSystem={unitSystem}
+  return weatherData && !weatherData?.message ? (
+    <div className="bg-[#F8D8F7] dark:bg-[#573656] dark:text-white 2xl:h-screen flex flex-col justify-evenly items-center gap-2 py-6">
+      <div className="max-w-[70%] lg:h-[480px] md:w-full lg:min-w-[1000px] lg:max-w-[1000px] xl:min-w-[1100px] xl:max-w-[1100px] dark:bg-[#0a0a0a] bg-white shadow-2xl shadow-[#e3a1e1] dark:shadow-[#f767f4] rounded-3xl flex flex-col lg:flex-row items-center justify-center overflow-hidden">
+        <CurrTemp
+          city={weatherData?.name}
+          country={weatherData?.sys?.country}
+          temperature={weatherData?.main?.temp}
+          feels={weatherData?.main?.feels_like}
+          desc={weatherData?.weather[0]?.main}
+          icon={weatherData?.weather[0]?.icon}
+          unitSystem={unitSystem}
+        />
+        <div className="h-full w-full py-4 px-2 bg-[#EAEAEB]  dark:bg-[#232121] flex flex-col justify-start items-center">
+          <div className="h-[10%] w-[95%] flex flex-col sm:flex-row justify-between items-center gap-2 ">
+            <input
+              type="search"
+              className="py-2 px-2 rounded-3xl outline-none dark:bg-[#0a0a0a]"
+              placeholder="Search city.."
+              value={cityName}
+              onChange={(e) => setCityName(e.target.value)}
+              onKeyDown={(e) => {
+                e.keyCode === 13 && setApiFetch(!apiFetch);
+              }}
             />
-            <div className="h-full w-2/3 py-4 px-2 bg-[#bcbcbc] dark:bg-[#232121] flex flex-col justify-between items-center">
-              <div className="h-[10%] w-[95%] flex justify-between items-center ">
-                <input
-                  type="search"
-                  className="py-2 px-2 rounded-3xl outline-none dark:bg-[#0a0a0a]"
-                  placeholder="Search city.."
-                  value={cityName}
-                  onChange={(e) => setCityName(e.target.value)}
-                  onKeyDown={(e) => {
-                    e.keyCode === 13 && setApiFetch(!apiFetch);
-                  }}
-                />
-                <div className="w-[25%] flex h-full justify-end items-center px-2">
-                  <button
+            <div className="w-full md:w-[25%] flex h-full justify-center sm:justify-end items-center px-2">
+              <button
+                onClick={() => {
+                  setThemeMode(themeMode === "light" ? "dark" : "light");
+                }}
+              >
+                {themeMode === "light" ? (
+                  <img height="32px" width="32px" src="/icons/01n.svg" />
+                ) : (
+                  <img height="32px" width="32px" src="/icons/01d.svg" />
+                )}
+              </button>
+              <label className="flex cursor-pointer select-none w-16 h-full items-center">
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    className="peer absolute left-1/2 -translate-x-1/2 w-full h-full appearance-none rounded-md"
                     onClick={() => {
-                      setThemeMode(themeMode === "light" ? "dark" : "light");
+                      changeSystem();
                     }}
-                  >
-                    {themeMode === "light" ? (
-                      <img height="32px" width="32px" src="/icons/01n.svg" />
-                    ) : (
-                      <img height="32px" width="32px" src="/icons/01d.svg" />
-                    )}
-                  </button>
-                  <label className="flex cursor-pointer select-none w-16 h-full items-center">
-                    <div className="relative">
-                      <input
-                        type="checkbox"
-                        className="peer absolute left-1/2 -translate-x-1/2 w-full h-full appearance-none rounded-md"
-                        onClick={() => {
-                          changeSystem();
-                        }}
-                      />
-                      <span className="w-16 h-10 flex items-center flex-shrink-0 ml-4 p-1 bg-[#F8D8F7] dark:bg-[#0a0a0a] rounded-full duration-300 ease-in-out peer-checked:bg-green-400 after:w-8 after:h-8 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-6 after:content-center"></span>
-                    </div>
-                  </label>
+                  />
+                  <span className="w-16 h-10 flex items-center flex-shrink-0 ml-4 p-1 bg-[#F8D8F7] dark:bg-[#0a0a0a] rounded-full duration-300 ease-in-out peer-checked:bg-green-400 after:w-8 after:h-8 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-6 after:content-center"></span>
                 </div>
-              </div>
-
-              <CurrDetails weather={weatherData} unitSystem={unitSystem} />
+              </label>
             </div>
           </div>
-          {futureDetail && (
-            <div className="h-[20%] max-w-[1100px] rounded-3xl flex items-center justify-center overflow-hidden">
-              <WeekTemp futureWeather={futureDetail} unitSystem={unitSystem} />
-            </div>
-          )}
+          <CurrDetails weather={weatherData} unitSystem={unitSystem} />
         </div>
-      ) : weatherData && weatherData?.message ? (
-        <div className="bg-[#F8D8F7] h-screen flex flex-col justify-evenly items-center gap-2 py-6">
-          <div className="h-[460px] min-w-[1100px] max-w-[1100px] bg-white shadow-2xl shadow-[#e3a1e1] rounded-3xl flex items-center justify-center overflow-hidden">
-            <div className="h-full min-w-[300px]" />
-            <div className="h-full w-full py-4 px-2 bg-[#EAEAEB] flex flex-col justify-start items-center">
-              <div className="h-[10%] w-[95%] flex justify-between items-center ">
-                <input
-                  type="search"
-                  className="py-2 px-2 rounded-3xl outline-none"
-                  placeholder="Search city.."
-                  value={cityName}
-                  onChange={(e) => setCityName(e.target.value)}
-                  onKeyDown={(e) => {
-                    e.keyCode === 13 && setApiFetch(!apiFetch);
-                  }}
-                />
-                <div className="w-[25%] flex h-full justify-end items-center px-2">
-                  <label className="flex cursor-pointer select-none w-16 h-full items-center">
-                    <div className="relative">
-                      <input
-                        type="checkbox"
-                        className="peer absolute left-1/2 -translate-x-1/2 w-full h-full appearance-none rounded-md cursor-not-allowed"
-                        disabled
-                      />
-                      <span className="w-16 h-10 flex items-center flex-shrink-0 ml-4 p-1 bg-[#F8D8F7] rounded-full duration-300 ease-in-out peer-checked:bg-green-400 after:w-8 after:h-8 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-6 after:content-center"></span>
-                    </div>
-                  </label>
-                </div>
-              </div>
-              <div className="max-w-full flex flex-wrap justify-start items-start py-2 pl-4 gap-2">
-                <div className="h-48 w-56 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
-                <div className="h-48 w-56 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
-                <div className="h-48 w-56 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
-                <div className="h-48 w-56 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
-                <div className="h-48 w-56 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
-                <div className="h-48 w-56 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
-              </div>
-            </div>
-          </div>
-          <div className="min-h-[20%] min-w-[1100px] rounded-3xl flex items-center justify-center overflow-hidden">
-            <div className="w-full h-full flex flex-wrap justify-evenly items-start gap-3">
-              <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
-              <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
-              <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
-              <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
-              <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white flex justify-center items-center gap-2" />
-            </div>
-          </div>
+      </div>
+      {futureDetail && (
+        <div className="sm:w-full lg:min-w-[1000px] lg:max-w-[1000px] xl:min-w-[1100px] xl:max-w-[1100px] rounded-3xl flex items-center justify-center overflow-x-hidden">
+          <WeekTemp futureWeather={futureDetail} unitSystem={unitSystem} />
         </div>
-      ) : (
-        <div className="h-screen w-full text-center"> ERRROORRR!</div>
       )}
-    </>
+    </div>
+  ) : weatherData && weatherData?.message ? (
+    <div className="bg-[#F8D8F7] dark:bg-[#573656] dark:text-white h-full 2xl:h-screen flex flex-col justify-evenly items-center gap-2 py-6">
+      <div className="max-w-[70%] lg:h-[480px] md:w-full lg:min-w-[1000px] lg:max-w-[1000px] xl:min-w-[1100px] xl:max-w-[1100px] dark:bg-[#0a0a0a] bg-white shadow-2xl shadow-[#e3a1e1] dark:shadow-[#f767f4] rounded-3xl flex flex-col lg:flex-row items-center justify-center overflow-hidden">
+        <div className="h-full min-w-[300px]" />
+        <div className="h-full w-full py-4 px-2 bg-[#EAEAEB]  dark:bg-[#232121] flex flex-col justify-start items-center">
+          <div className="h-[10%] w-[95%] flex flex-col sm:flex-row justify-between items-center gap-2 ">
+            <input
+              type="search"
+              className="py-2 px-2 rounded-3xl outline-none dark:bg-[#0a0a0a]"
+              placeholder="Search city.."
+              value={cityName}
+              onChange={(e) => setCityName(e.target.value)}
+              onKeyDown={(e) => {
+                e.keyCode === 13 && setApiFetch(!apiFetch);
+              }}
+            />
+            <div className="w-full md:w-[25%] flex h-full justify-center sm:justify-end items-center px-2">
+              <button
+                onClick={() => {
+                  setThemeMode(themeMode === "light" ? "dark" : "light");
+                }}
+              >
+                {themeMode === "light" ? (
+                  <img height="32px" width="32px" src="/icons/01n.svg" />
+                ) : (
+                  <img height="32px" width="32px" src="/icons/01d.svg" />
+                )}
+              </button>
+              <label className="flex cursor-pointer select-none w-16 h-full items-center">
+                <div className="relative">
+                  <input
+                    type="checkbox"
+                    className="peer absolute left-1/2 -translate-x-1/2 w-full h-full appearance-none rounded-md cursor-not-allowed"
+                    disabled
+                    onClick={() => {
+                      changeSystem();
+                    }}
+                  />
+                  <span className="w-16 h-10 flex items-center flex-shrink-0 ml-4 p-1 bg-[#F8D8F7] dark:bg-[#0a0a0a] rounded-full duration-300 ease-in-out peer-checked:bg-green-400 after:w-8 after:h-8 after:bg-white after:rounded-full after:shadow-md after:duration-300 peer-checked:after:translate-x-6 after:content-center"></span>
+                </div>
+              </label>
+            </div>
+          </div>
+          <div className="max-w-full flex flex-wrap justify-start items-start py-2 pl-4 gap-2">
+            <div className="h-40 w-52 lg:h-48 lg:w-56  rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a]  flex justify-center items-center gap-2" />
+            <div className="h-40 w-52 lg:h-48 lg:w-56 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a]  flex justify-center items-center gap-2" />
+            <div className="h-40 w-52 lg:h-48 lg:w-56 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a]  flex justify-center items-center gap-2" />
+            <div className="h-40 w-52 lg:h-48 lg:w-56 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a]  flex justify-center items-center gap-2" />
+            <div className="h-40 w-52 lg:h-48 lg:w-56 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a]  flex justify-center items-center gap-2" />
+            <div className="h-40 w-52 lg:h-48 lg:w-56 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a]  flex justify-center items-center gap-2" />
+          </div>
+        </div>
+      </div>
+      <div className=" sm:w-full lg:min-w-[1000px] lg:max-w-[1000px] xl:min-w-[1100px] xl:max-w-[1100px] rounded-3xl hidden lg:flex items-center justify-center overflow-x-hidden">
+        <div className="w-full h-full flex flex-wrap justify-evenly items-start gap-3">
+          <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a] flex justify-center items-center gap-2" />
+          <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a] flex justify-center items-center gap-2" />
+          <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a] flex justify-center items-center gap-2" />
+          <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a] flex justify-center items-center gap-2" />
+          <div className="h-40 w-52 rounded-3xl py-2 px-2 bg-white dark:bg-[#0a0a0a] flex justify-center items-center gap-2" />
+        </div>
+      </div>
+    </div>
+  ) : (
+    <div className="h-screen w-full text-center text-2xl ">
+      Loading data ...
+    </div>
   );
 };
 

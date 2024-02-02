@@ -4,7 +4,7 @@ import Card from "./Card";
 
 const CurrDetails = ({ weather, unitSystem }) => {
   return (
-    <div className="w-full flex flex-wrap justify-start items-start py-2 pl-4 gap-2">
+    <div className="w-full flex flex-wrap justify-evenly items-start pt-2 pl-4 gap-x-4 gap-y-2">
       <Card
         mainHeading="Humidity"
         number={weather?.main?.humidity}

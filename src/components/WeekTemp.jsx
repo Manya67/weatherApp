@@ -1,15 +1,21 @@
 import WeekCard from "./WeekCard";
+import { ctoF } from "../assets/converts";
 
-const WeekTemp = ({ futureWeather }) => {
+const WeekTemp = ({ futureWeather, unitSystem }) => {
   return (
-    <div className="w-full h-full flex flex-wrap justify-evenly items-start gap-3">
+    <div className=" w-[70%] lg:w-full h-full flex flex-wrap justify-evenly items-start gap-3">
       {futureWeather.map((day, index) => {
         return (
           <WeekCard
             date={day?.date}
             icon={day?.icon}
-            temp={day?.temp}
+            temp={
+              unitSystem === "metric"
+                ? Math.round(day?.temp)
+                : Math.round(ctoF(day?.temp))
+            }
             key={index}
+            unit={`°${unitSystem === "metric" ? "C" : "F"}`}
           />
         );
       })}
