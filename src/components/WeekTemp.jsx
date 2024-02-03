@@ -5,6 +5,8 @@ const WeekTemp = ({ futureWeather, unitSystem }) => {
   return (
     <div className=" w-[70%] lg:w-full h-full flex flex-wrap justify-evenly items-start gap-3">
       {futureWeather.map((day, index) => {
+        const temp = day?.temp;
+        if (temp === undefined) return <div key={index}></div>;
         return (
           <WeekCard
             date={day?.date}
