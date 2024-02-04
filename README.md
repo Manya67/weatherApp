@@ -27,9 +27,9 @@ and also the temperature of future 4-5 days in the timezone of 12:00
 ## API Reference
 used **openweathermap** api 
 
-- current temperature details : https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key} 
+- current temperature details: https://openweathermap.org/current
 
-- future temperature details : https://api.openweathermap.org/data/2.5/forecast?q={city name}&appid={API key}
+- future temperature details: https://openweathermap.org/forecast5
 
 
 
