@@ -78,7 +78,7 @@ const App = () => {
       : setUnitSystem("metric");
 
   return weatherData && !weatherData?.message ? (
-    <div className="bg-[#F8D8F7] dark:bg-[#573656] dark:text-white 2xl:h-screen flex flex-col justify-evenly items-center gap-2 py-6">
+    <div className="bg-[#F8D8F7] dark:bg-[#573656] dark:text-white min-h-screen flex flex-col justify-evenly items-center gap-2 py-6">
       <div className="max-w-[70%] lg:h-[480px] md:w-full lg:min-w-[1000px] lg:max-w-[1000px] xl:min-w-[1100px] xl:max-w-[1100px] dark:bg-[#0a0a0a] bg-white shadow-2xl shadow-[#e3a1e1] dark:shadow-[#f767f4] rounded-3xl flex flex-col lg:flex-row items-center justify-center overflow-hidden">
         <CurrTemp
           city={weatherData?.name}
@@ -137,7 +137,7 @@ const App = () => {
       )}
     </div>
   ) : weatherData && weatherData?.message ? (
-    <div className="bg-[#F8D8F7] dark:bg-[#573656] dark:text-white h-full 2xl:h-screen flex flex-col justify-evenly items-center gap-2 py-6">
+    <div className="bg-[#F8D8F7] dark:bg-[#573656] dark:text-white min-h-screen flex flex-col justify-evenly items-center gap-2 py-6">
       <div className="max-w-[70%] lg:h-[480px] md:w-full lg:min-w-[1000px] lg:max-w-[1000px] xl:min-w-[1100px] xl:max-w-[1100px] dark:bg-[#0a0a0a] bg-white shadow-2xl shadow-[#e3a1e1] dark:shadow-[#f767f4] rounded-3xl flex flex-col lg:flex-row items-center justify-center overflow-hidden">
         <div className="h-full min-w-[300px]" />
         <div className="h-full w-full py-4 px-2 bg-[#EAEAEB]  dark:bg-[#232121] flex flex-col justify-start items-center">
